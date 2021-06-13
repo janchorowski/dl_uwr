@@ -179,8 +179,8 @@ check using `nvidia-smi`. To periodicaly check and show GPU temperature we can u
 watch -n 1 nvidia-smi
 ```
 `watch` command start periodicaly commad given as an argument and print it output.
-Temperature in range 70C-85C is fine. GPU stop working in temperature 96C and
-on 93C start to throttle, but when GPU is so hot then there is big chance that
+Temperature in range 70C-85C is fine. GPU stop working in temperature 99C and
+on 96C start to throttle, but when GPU is so hot then there is big chance that
 temperature of mother board would be greater or equal to 90C. In such case computer
 restart without any warning.
 
