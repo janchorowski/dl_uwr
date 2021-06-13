@@ -27,9 +27,8 @@ Hardware
 ========
 
 We have two configured machines ai-01.stud.ii and ai-02.stud.ii, on which
-you can run computations. Users home directories aren't sync with home directories
-used on labs computers so you will have to set up correct files (for example .bashrc, .vimrc)
-from scratch.
+you can run computations. Users home directories should be sync with home directories
+used on labs computers. (If no see "Problems").
 
 Software
 ========
@@ -92,10 +91,17 @@ versions of CUDNN.
 File Storage
 ============
 
-You can store temp files on two larger network drives,
-`/pio/os/scratch/1` and `/pio/os/scratch/2`. They are available on
+You can store temp files on two larger network discs,
+`/pio/scratch/1` and `/pio/scratch/2`. They are available on
 ai-* machines and in Lab137. Please create a folder with you username in one of
-the scratch spaces. Since there is no quota, please use as little as you
+the scratch spaces. 
+
+On the other hand `/pio/lscratch/1` and eventually `/pio/lscratch/2` are
+local discs on which You can store files. Because of locallity of this
+discs there are no possibility to access files from one computer on the
+another computer.
+
+Since there is no quota, please use as little as you
 need and don’t force us to establish a quota system. We will clean the
 scratch space after the semester.
 
@@ -162,3 +168,37 @@ efficiently by not allocating more CPU-bound processes on single
 machines, than the number of available cores. The labs will be monitored
 for extreme cases of resource hogging, but moderate load should be fine
 in most cases.
+
+Problems
+========
+
+ai-0{1,2}.stud.ii aren't very stable. When running computation heavy 
+program using CUDA, GPU tend to overheating. Temperature of GPU can be easy 
+check using `nvidia-smi`. To periodicaly check and show GPU temperature we can use:
+```sh
+watch -n 1 nvidia-smi
+```
+`watch` command start periodicaly commad given as an argument and print it output.
+Temperature in range 70C-85C is fine. GPU stop working in temperature 96C and
+on 93C start to throttle, but when GPU is so hot then there is big chance that
+temperature of mother board would be greater or equal to 90C. In such case computer
+restart without any warning.
+
+When running computation heavy programs on GPU e.g. transformers, there is
+need to make periodically break to cool GPU. With python it can be easy made
+using `sleep(t)` command from `time` module, which will sleep `t` seconds, befor
+continuing calculations.
+```py
+import time
+time.sleep(15)
+```
+Good values of sleeping time are between 15 and 30 seconds. This is enough to
+drop temperature from 85C to ca. 68C-70C. When You need more cooling probaly
+better idea than making this time loger is to increase frequency of breaks.
+
+After computer has turned off, it will automaticaly start, but during startup
+it is likely that there will be some errors, because of races. For example:
+- home directories aren't mounted (so after logging in You have new, clean,
+  home directory on local disc) - in such case You haven't also access rights
+  to directories in `/pio`.
+- `/pio/os` / `/pio/scratch` isn't mounted
