@@ -14,3 +14,5 @@ This repository contains materials for my Deep Learning and Neural Networks cour
 - Successfully fine-tuned a large-scale model. ✅
 - Experimented with word embeddings technologies such as Word2Vec and BERT. ✅
 - Explored the concept of variational autoencoders. ✅
+- GANs ✅
+- RealNVP ✅
