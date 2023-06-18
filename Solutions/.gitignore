@@ -3,3 +3,9 @@ ilsvrc_subsample/*
 101_ObjectCategories/*
 Solutions3-Helper.ipynb
 images/*
+profanities.txt
+reddit_pairs.txt
+word2vec.tar.xz
+word2vec/*
+BERT-encodings.npy
+hackernews_pairs.txt
