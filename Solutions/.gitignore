@@ -9,3 +9,4 @@ word2vec.tar.xz
 word2vec/*
 BERT-encodings.npy
 hackernews_pairs.txt
+gan_interpolation.gif
